@@ -1,0 +1,3 @@
+[submodule "rcdb"]
+	path = rcdb
+	url = https://github.com/JeffersonLab/rcdb
