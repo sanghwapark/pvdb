@@ -1,0 +1,53 @@
+import argparse
+from subprocess import check_output
+import xml.etree.ElementTree as Et
+
+import logging
+import datetime
+
+"""
+parser = argparse.ArgumentParser(description="coda parser")
+parser.add_argument("coda_file_name", type=str, help="Path to coda data file")
+args = parser.parse_args()
+"""
+
+def parse_run_prestart_time(parse_result)
+
+    """
+    Return run prestart time
+    Parse directly from coda data file
+
+    coda event tag: 17 (prestart), 18 (start), 20 (end)
+    """
+
+    coda_file = args.coda_file_name
+    cmds = ["evio2xml", "-ev", "17", "-xtod", coda_file]
+
+    out = check_output(cmds)
+
+    xml_root = Et.ElementTree(Et.fromstring(out)).getroot()
+    xml_run_start = xml_root.find("event")
+
+    # Sanity check. Enable later
+    if xml_run_start is None:
+        return parse_result
+    parse_result.has_run_start = True
+
+    try:
+        start_time = datetime.utcfromtimestamp(int(xml_root.find("event").text.split(None)[0]).strftime("%m/%d/%y %H:%M:%S"))
+        parse_result.start_time = start_time
+    except Exception as ex:
+
+
+
+
+    run_number = xml_root.find("event").text.split(None)[1]
+    run_config = xml_root.find("event").text.split(None)[2]
+
+
+
+
+
+    
+if __name__== '__main__':
+    parse_run_prestart_time()
