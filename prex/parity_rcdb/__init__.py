@@ -12,8 +12,9 @@ class ParityConditions(object):
     TARGET_TYPE = 'target_type'
     TARGET_ENCODER = 'target_encoder'
     IHWP = 'ihwp'
-    RHWP = 'rhwp'
-    WIEN_ANGLE = 'wien_angle'
+    RQWP = 'rqwp'
+    VWIEN = 'vertical_wien'
+    HWIEN = 'horizontal_wien'
 
 def create_condition_types(db):
     """
@@ -38,5 +39,6 @@ def create_condition_types(db):
     create_condition_type(ParityConditions.TARGET_TYPE, ConditionType.STRING_FIELD)
     create_condition_type(ParityConditions.TARGET_ENCODER, ConditionType.FLOAT_FIELD, "Target encoder position")
     create_condition_type(ParityConditions.IHWP, ConditionType.STRING_FIELD, "Insertable half-wave plate In/Out")
-    create_condition_type(ParityConditions.RHWP, ConditionType.STRING_FIELD, "Rotatable quarter-wave plate")
-    create_condition_type(ParityConditions.WIEN_ANGLE, ConditionType.FLOAT_FIELD, "Wien angle in deg")
+    create_condition_type(ParityConditions.RQWP, ConditionType.FLOAT_FIELD, "Rotating quarter wave plate")
+    create_condition_type(ParityConditions.VWIEN, ConditionType.FLOAT_FIELD, "vertical wien angle in deg")
+    create_condition_type(ParityConditions.HWIEN, ConditionType.FLOAT_FIELD, "horizontal wien angle in deg")
