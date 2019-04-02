@@ -26,7 +26,7 @@ Things to consider for the future:
 
 """
 
-def usage():
+def get_usage():
     return """
     Usage:
         minimal:
@@ -42,23 +42,14 @@ def usage():
     """
     
 def parse_start_run_info():
-
     script_start_clock = time.clock()
     script_start_time = time.time()
-"""
-    # We will use this to identify this process in logs. Is done for investigation of double messages
-    script_start_datetime = datetime.now()
-    script_name = os.urandom(8).encode('hex')
-    script_pid = os.getpid()
-    script_ppid = os.getppid()
-    script_uid = os.getuid()
 
-"""
-
-    log = logging.getLogger('pvdb')  # create run configuration standard logger
+    log = logging.getLogger('pvdb') # create run configuration standard logger
     log.addHandler(logging.StreamHandler(sys.stdout))  # add console output for logger
     log.setLevel(logging.INFO)  # DEBUG: print everything. Changed to logging.INFO for less output
 
+    description = "Update PVDB"
     parser = argparse.ArgumentParser(description=description, usage=get_usage())
     parser.add_argument("config_xml_file", type=str, help="full path to configID.xml file")
     parser.add_argument("session_xml_file", type=str, help="full path to controlSessions.xml file")
@@ -249,4 +240,4 @@ def update_parity_coda_conditions(context, parse_result):
     db.session.commit()     # Save run times
 
 if __name__== '__main__':
-
+    parse_start_run_info()
