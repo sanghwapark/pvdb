@@ -18,6 +18,7 @@ EPICS variables
 
 epics_list = {
     "HALLA:p":ParityConditions.BEAM_ENERGY,
+    "IBC1H04CRCUR2":ParityConditions:BEAM_CURRENT,
     "APEXPOS":ParityConditions.TARGET_ENCODER,
     "IGL1I00OD16_16":ParityConditions.IHWP,
     "psub_pl_pos":ParityConditions.RQWP,

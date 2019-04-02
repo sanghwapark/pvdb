@@ -43,6 +43,7 @@ def parse_start_run_data(config_file, session_file):
     try:
         temp_start_time = script_start_time.strftime("%Y-%m-%d %H:%M:%S")
         result.start_time = temp_start_time
+        result.has_run_start = True
     except Exception as ex:
         log.warning("Error with temp run start time " + str(ex))
 
