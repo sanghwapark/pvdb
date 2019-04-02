@@ -4,6 +4,7 @@ import rcdb
 import subprocess
 from parity_rcdb import ParityConditions
 
+from rcdb.model import ConditionType, Condition
 from rcdb.log_format import BraceMessage as Lf
 
 """
@@ -59,6 +60,8 @@ def update_db_conds(db, run, reason):
     conditions.update( get_run_conds() )
     db.add_conditions(run, conditions, True)
     log.debug("Commited to DB. End of update_db_conds()")
+
+    return conditions
 
 
 if __name__ == "__main__":
