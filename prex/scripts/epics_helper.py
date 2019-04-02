@@ -18,7 +18,7 @@ EPICS variables
 
 epics_list = {
     "HALLA:p":ParityConditions.BEAM_ENERGY,
-    "IBC1H04CRCUR2":ParityConditions:BEAM_CURRENT,
+    "IBC1H04CRCUR2":ParityConditions.BEAM_CURRENT,
     "APEXPOS":ParityConditions.TARGET_ENCODER,
     "IGL1I00OD16_16":ParityConditions.IHWP,
     "psub_pl_pos":ParityConditions.RQWP,
@@ -43,7 +43,7 @@ def get_run_conds():
 
     return conditions
 
-def udpate_db_conds(db, run, reason):
+def update_db_conds(db, run, reason):
     """
     add_conditions(run, name_values, replace=True/False)
     :name_values: dictionary or list of name-value pairs
