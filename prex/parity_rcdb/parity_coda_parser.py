@@ -15,13 +15,20 @@ class ParityCodaRunLogParseResult(object):
         self.run_config = None           # Run config (ALL, INJ, CH..)
         self.run_type = None             # Run type (production, junk, ..)
         self.run_number = None           # Run number
+        self.event_count = None          # number of events in the run
         self.has_run_start = False       # Data file has event with tag = 18
-        self.has_run_end = False         # Data file has event with tag = 20?
+        self.has_run_end = False         # Data file has event with tag = 20
         self.coda_config_file = None     # configID.xml with full path
         self.coda_session_file = None    # controlSessions.xml with full path
         self.coda_session = None         # session name
         self.coda_last_file = None       # Last data filename
         self.coda_files_count = None     # Number of coda data files
+
+def parity_configs(config_id):
+    if config_id > 3:
+        return "Unknown"
+    config_name=["Injector", "CH", "ALL_PREX", "BMW_test"]
+    return config_name[config_id]
 
 def parse_start_run_data(config_file, session_file):
     """
@@ -123,41 +130,59 @@ def parse_coda_session_file(parse_result, filename):
 
     return parse_result
 
-def parse_run_prestart(parse_result, coda_file):
-
+def parse_coda_data_file(coda_file):
     """
-    Return run prestart time
-    Parse directly from coda data file
+    Intended to use mostly for post repair scripts
+    Read data file directly
 
-    coda event tag: 17 (prestart), 18 (start), 20 (end)
+    coda event tag: 17 (prestart), 18 (start), 20 (end), 131 (epics)
     """
 
-    cmds = ["evio2xml", "-ev", "17", "-xtod", coda_file]
+    parse_result = ParityCodaRunLogParseResult()
+
+    cmds = ["evio2xml", "-ev", "17", "-ev", "18", "-xtod", "-max", "2", coda_file]
 
     out = check_output(cmds)
 
-    xml_root = Et.ElementTree(Et.fromstring(out)).getroot()
-    xml_run_start = xml_root.find("event")
-
-    # Sanity check
-    if xml_run_start is None:
-        log.debug("No event with tag=17 found in file ")
+    xml_check = xml_root.find("event")
+    if xml_check is None:
+        log.debug("No event with tag=17 or 18 found in file ")
         return parse_result
 
-    # Prestart time
-    parse_result.has_run_prestart = True
+    xml_root = Et.ElementTree(Et.fromstring(out)).getroot()
+    for xml_result in xml_root.findall("event"):
+        tag = xml_result.attrib["tag"]
+        if tag == "17":
+            xml_prestart_time = int(xml_result.text.split(None)[0])
+            xml_run_number = int(xml_result.text.split(None)[1])
+            xml_run_config = int(xml_result.text.split(None)[2])
+            try:
+                parse_result.prestart_time = datetime.utcfromtimestamp(xml_prestart_time).strftime("%m/%d/%y %H:%M:%S"))
+                parse_result.run_number = xml_run_number
+                parse_result.run_config = parity_configs(xml_run_config)
+            except Exception as ex:
+                log.warning("Unable to parse prestart information. Error: " + str(ex))
+        elif tag == "18":
+            xml_start_time = int(xml_result.text.split(None)[0])
+            try:
+                parse_result.start_time = datetime.utcfromtimestamp(xml_start_time).strftime("%m/%d/%y %H:%M:%S"))
+                parse_result.has_run_start = True
+            except Exception as ex:
+                log.warning("Unable to parse start time. Error: " + str(ex))
+        elif tag == "20":
+            xml_end_time = int(xml_result.text.split(None)[0])
+            xml_event_count = int(xml_result.text.split(None)[2])
+            try:
+                parse_result.end_time = datetime.utcfromtimestamp(xml_end_time).strftime("%m/%d/%y %H:%M:%S"))
+                parse_result.event_count = xml_event_count
+                parse_result.has_end_start = True
+            except Exception as ex:
+                log.warning("Unable to parse end time. Error: " + str(ex))
+        else:
+            continue
 
-    try:
-        prestart_time = datetime.utcfromtimestamp(int(xml_root.find("event").text.split(None)[0]).strftime("%m/%d/%y %H:%M:%S"))
-        parse_result.prestart_time = prestart_time
-    except Exception as ex:
-        log.warning("Unable to parse prestart time. Error: " + str(ex))
-
-    # Run number
-    run_number = xml_root.find("event").text.split(None)[1]
-    parse_result.run_number = run_number
-
-#    run_config = xml_root.find("event").text.split(None)[2]
-#    parse_result.run_config = run_config
+    # CHECK IF WE WOULD END UP WITH MULTIPLE DATA FILES FOR A RUN
+    parse_result.coda_last_file = coda_file
+    parse_result.coda_files_count = 1
 
     return parse_result
