@@ -195,11 +195,6 @@ def update_parity_coda_conditions(context, parse_result):
     if parse_result.run_config is not None:
         conditions.append((DefaultConditions.RUN_CONFIG, parse_result.run_config))
 
-    # start time (temporary input)
-#    if parse_result.has_run_start and parse_result.start_time is not None:
-#        conditions.append((DefaultConditions.RUN_START_TIME, parse_result.start_time))
-
-    """
     #These need to be udpated by Run END
     # Set the run as not properly finished (We hope that the next section will
     if parse_result.has_run_end is not None:
@@ -213,12 +208,18 @@ def update_parity_coda_conditions(context, parse_result):
     if parse_result.user_comment is not None:
         conditions.append((DefaultConditions.USER_COMMENT, parse_result.user_comment))
 
+    # Run prestart time
+    if parse_result.prestart_time is not None:
+        conditions.append((ParityConditions.RUN_PRESTART_TIME, parse_result.prestart_time))
+
+    """
+    # Conditions not added currently
     # Filename of the last evio file written by CODA ER
-    if parse_result.evio_last_file is not None:
+    if parse_result.coda_last_file is not None:
         conditions.append(('evio_last_file', parse_result.evio_last_file))
 
     # The number of evio files written by CODA Event Recorder
-    if parse_result.evio_files_count is not None:
+    if parse_result.coda_files_count is not None:
         conditions.append(('evio_files_count', parse_result.evio_files_count))
     """
 
@@ -232,10 +233,12 @@ def update_parity_coda_conditions(context, parse_result):
         run.start_time = parse_result.start_time     # Time of the run start
         log.info(Lf("Run start time is {}", parse_result.start_time))
 
-    """
     if parse_result.end_time is not None:
         run.end_time = parse_result.end_time         # Time of the run end
         log.info(Lf("Run end time is {}. Set from end_time record", parse_result.end_time))
+
+    """
+    # update_time is not currently included in ParityCodaRunLogParseResult
     else:
         if parse_result.update_time is not None:
             run.end_time = parse_result.update_time  # Fallback, set time when the coda log file is written as end time

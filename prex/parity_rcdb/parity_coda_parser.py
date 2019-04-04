@@ -20,6 +20,7 @@ class ParityCodaRunLogParseResult(object):
         self.has_run_end = False         # Data file has event with tag = 20
         self.coda_config_file = None     # configID.xml with full path
         self.coda_session_file = None    # controlSessions.xml with full path
+        self.user_comment = None         # Daq comment by user
         self.coda_session = None         # session name
         self.coda_last_file = None       # Last data filename
         self.coda_files_count = None     # Number of coda data files
@@ -140,16 +141,17 @@ def parse_coda_data_file(coda_file):
 
     parse_result = ParityCodaRunLogParseResult()
 
-    cmds = ["evio2xml", "-ev", "17", "-ev", "18", "-xtod", "-max", "2", coda_file]
+    cmds = ["evio2xml", "-ev", "17", "-ev", "18", "-ev", "20", "-xtod", "-max", "3", coda_file]
 
     out = check_output(cmds)
+
+    xml_root = Et.ElementTree(Et.fromstring(out)).getroot()
 
     xml_check = xml_root.find("event")
     if xml_check is None:
         log.debug("No event with tag=17 or 18 found in file ")
         return parse_result
 
-    xml_root = Et.ElementTree(Et.fromstring(out)).getroot()
     for xml_result in xml_root.findall("event"):
         tag = xml_result.attrib["tag"]
         if tag == "17":
@@ -157,7 +159,7 @@ def parse_coda_data_file(coda_file):
             xml_run_number = int(xml_result.text.split(None)[1])
             xml_run_config = int(xml_result.text.split(None)[2])
             try:
-                parse_result.prestart_time = datetime.utcfromtimestamp(xml_prestart_time).strftime("%m/%d/%y %H:%M:%S"))
+                parse_result.prestart_time = datetime.utcfromtimestamp(xml_prestart_time).strftime("%m/%d/%y %H:%M:%S")
                 parse_result.run_number = xml_run_number
                 parse_result.run_config = parity_configs(xml_run_config)
             except Exception as ex:
@@ -165,7 +167,7 @@ def parse_coda_data_file(coda_file):
         elif tag == "18":
             xml_start_time = int(xml_result.text.split(None)[0])
             try:
-                parse_result.start_time = datetime.utcfromtimestamp(xml_start_time).strftime("%m/%d/%y %H:%M:%S"))
+                parse_result.start_time = datetime.utcfromtimestamp(xml_start_time).strftime("%m/%d/%y %H:%M:%S")
                 parse_result.has_run_start = True
             except Exception as ex:
                 log.warning("Unable to parse start time. Error: " + str(ex))
@@ -173,7 +175,7 @@ def parse_coda_data_file(coda_file):
             xml_end_time = int(xml_result.text.split(None)[0])
             xml_event_count = int(xml_result.text.split(None)[2])
             try:
-                parse_result.end_time = datetime.utcfromtimestamp(xml_end_time).strftime("%m/%d/%y %H:%M:%S"))
+                parse_result.end_time = datetime.utcfromtimestamp(xml_end_time).strftime("%m/%d/%y %H:%M:%S")
                 parse_result.event_count = xml_event_count
                 parse_result.has_end_start = True
             except Exception as ex:
