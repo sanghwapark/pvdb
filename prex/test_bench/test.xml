@@ -1,0 +1,22 @@
+<!-- xml boilerplate needs to go here -->
+
+<evio-data>
+
+
+
+<!-- ===================== Event 1 contains 5 words (20 bytes) ===================== -->
+
+<event format="evio" count="1" content="uint32" data_type="0x1" tag="17" num="204">
+       0x5c9a4710          0x5d8            0x2 
+</event>
+
+
+
+<!-- ===================== Event 2 contains 5 words (20 bytes) ===================== -->
+
+<event format="evio" count="2" content="uint32" data_type="0x1" tag="18" num="204">
+       0x5c9a471f              0              0 
+</event>
+
+</evio-data>
+
