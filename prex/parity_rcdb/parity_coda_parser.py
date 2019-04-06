@@ -49,7 +49,7 @@ def parse_start_run_data(config_file, session_file):
     result = ParityCodaRunLogParseResult()
 
     try:
-        temp_start_time = script_start_time.strftime("%Y-%m-%d %H:%M:%S")
+        temp_start_time = script_start_time.strftime("%m/%d/%y %H:%M:%S")
         result.start_time = temp_start_time
         result.has_run_start = True
     except Exception as ex:
@@ -159,7 +159,7 @@ def parse_coda_data_file(coda_file):
             xml_run_number = int(xml_result.text.split(None)[1])
             xml_run_config = int(xml_result.text.split(None)[2])
             try:
-                parse_result.prestart_time = datetime.utcfromtimestamp(xml_prestart_time).strftime("%m/%d/%y %H:%M:%S")
+                parse_result.prestart_time = datetime.fromtimestamp(xml_prestart_time)
                 parse_result.run_number = xml_run_number
                 parse_result.run_config = parity_configs(xml_run_config)
             except Exception as ex:
@@ -177,7 +177,7 @@ def parse_coda_data_file(coda_file):
             try:
                 parse_result.end_time = datetime.utcfromtimestamp(xml_end_time).strftime("%m/%d/%y %H:%M:%S")
                 parse_result.event_count = xml_event_count
-                parse_result.has_end_start = True
+                parse_result.has_run_end = True
             except Exception as ex:
                 log.warning("Unable to parse end time. Error: " + str(ex))
         else:

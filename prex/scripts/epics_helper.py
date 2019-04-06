@@ -28,21 +28,70 @@ epics_list = {
 }
 
 def get_run_conds():
-
     conditions = {}
 
     for epics_name, cond_name in epics_list.iteritems():
         cmds = ['caget', '-t', epics_name]
         cond_out = subprocess.Popen(cmds, stdout=subprocess.PIPE).stdout.read().strip()
-
         if "Invalid" in cond_out:
             print "ERROR Invalid epics channel name, check with caget again "
-            cond_out = "-1"
-
+            cond_out = "-999"
 
         conditions[cond_name] = cond_out
 
+    conditions["target_type"] = get_target_name(conditions["target_encoder"])
+
     return conditions
+
+def print_conds():
+    conditions = get_run_conds()
+    print conditions["target_type"]
+
+def get_target_name(enc_pos):
+    """
+    Compare encoder position with target BDS table
+    Return corresponding target name
+    Based on the APEX target system for now
+    Need to udpate for PREX
+    """
+
+    if enc_pos == "-999":
+        return "Invalid"
+
+    tar_bds = [-18526,
+               3197,
+               47255,
+               165223,
+               297861,
+               427509,
+               603200,
+               710189,
+               994363,
+               1248916,
+               1722284,
+               1743072]
+
+    tar_name = ["Hard_Stop",
+                "Up-hole_2x2",
+                "Down-hole_2x2",
+                "Optics 1 (UP)",
+                "Optics 2 (MIDDLE)",
+                "Optics 3 (DOWN)",
+                "W wire (for BW)",
+                "W wires",
+                "HOME",
+                "Carbon 0.53%RL",
+                "Tungsten 2.8%RL",
+                "Hard_Stop"]
+
+    bds_close = min(tar_bds, key=lambda x:abs(x-float(enc_pos)))
+
+    if abs(float(enc_pos)-bds_close) > 100:
+        return "Unknown"
+    else:
+        tar_index = tar_bds.index(bds_close)
+        return tar_name[tar_index]
+
 
 def update_db_conds(db, run, reason):
     """

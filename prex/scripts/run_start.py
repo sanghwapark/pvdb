@@ -174,10 +174,13 @@ def update_parity_coda_conditions(context, parse_result):
         log.warn("parse_result.run_number is None. (!) Run. Number. Is. None!!!")
         return
     
+    """
+    # enable later
     if context.reason == UpdateReasons.END and not db.get_run(parse_result.run_number):
         log.info(Lf("Run '{}' is not found in DB. But the update reason is end of run. "
                     "Considering there where no GO. Only prestart and then Stop ", parse_result.run_number))
         return
+    """
 
     run = db.create_run(parse_result.run_number)
 
@@ -203,7 +206,7 @@ def update_parity_coda_conditions(context, parse_result):
     # The number of events in the run
     if parse_result.event_count is not None:
         conditions.append((DefaultConditions.EVENT_COUNT, parse_result.event_count))
-
+        
     # Daq comment by user
     if parse_result.user_comment is not None:
         conditions.append((DefaultConditions.USER_COMMENT, parse_result.user_comment))
@@ -211,6 +214,14 @@ def update_parity_coda_conditions(context, parse_result):
     # Run prestart time
     if parse_result.prestart_time is not None:
         conditions.append((ParityConditions.RUN_PRESTART_TIME, parse_result.prestart_time))
+
+    # Run length
+    if parse_result.has_run_end == True and parse_result.has_run_start == True:
+        total_run_time = datetime.strptime(parse_result.end_time, "%m/%d/%y %H:%M:%S") - datetime.strptime(parse_result.start_time, "%m/%d/%y %H:%M:%S")
+        conditions.append((DefaultConditions.RUN_LENGTH, total_run_time.seconds))
+        #start and end time is read from run table, so no need to add these conditions here
+#        conditions.append((DefaultConditions.RUN_START_TIME, datetime.strptime(parse_result.start_time,"%m/%d/%y %H:%M:%S")))
+#        conditions.append((DefaultConditions.RUN_END_TIME, datetime.strptime(parse_result.end_time, "%m/%d/%y %H:%M:%S")))
 
     """
     # Conditions not added currently
@@ -228,7 +239,7 @@ def update_parity_coda_conditions(context, parse_result):
 
     log.info(Lf("update_coda: Saved {} conditions to DB", len(conditions)))
 
-    # Start and end times (save start time to db.. this is has to be included)
+    # Start and end times
     if parse_result.start_time is not None:
         run.start_time = parse_result.start_time     # Time of the run start
         log.info(Lf("Run start time is {}", parse_result.start_time))
