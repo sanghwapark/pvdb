@@ -2,8 +2,12 @@ import logging
 import os, sys
 import rcdb
 import subprocess
+import socket
+
+#pvdb
 from parity_rcdb import ParityConditions
 
+#rcdb stuff
 from rcdb.model import ConditionType, Condition
 from rcdb.log_format import BraceMessage as Lf
 
@@ -114,6 +118,12 @@ def update_db_conds(db, run, reason):
 
 
 if __name__ == "__main__":
+    # check if it would have caget available 
+    host = socket.gethostname()
+    if not ("adaq" in host or "aonl" in host or "ops" in host):
+        print "You may  not have caget available. Check first"
+        sys.exit()
+
     log = logging.getLogger('pvdb.update')               # create run configuration standard logger
     log.addHandler(logging.StreamHandler(sys.stdout))    # add console output for logger
     log.setLevel(logging.DEBUG)                          # print everything. Change to logging.INFO for less output
