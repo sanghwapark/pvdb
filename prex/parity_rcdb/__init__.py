@@ -15,6 +15,8 @@ class ParityConditions(object):
     RQWP = 'rqwp'
     VWIEN = 'vertical_wien'
     HWIEN = 'horizontal_wien'
+    HELICITY_FREQUENCY = 'helicity_frequency'
+    HELICITY_PATTERN = 'helicity_pattern'
 
 def create_condition_types(db):
     """
@@ -42,3 +44,5 @@ def create_condition_types(db):
     create_condition_type(ParityConditions.RQWP, ConditionType.FLOAT_FIELD, "Rotating quarter wave plate")
     create_condition_type(ParityConditions.VWIEN, ConditionType.FLOAT_FIELD, "vertical wien angle in deg")
     create_condition_type(ParityConditions.HWIEN, ConditionType.FLOAT_FIELD, "horizontal wien angle in deg")
+    create_condition_type(ParityConditions.HELICITY_FREQUENCY, ConditionType.STRING_FIELD, "helicity pattern")
+    create_condition_type(ParityConditions.HELICITY_PATTERN, ConditionType.FLOAT_FIELD, "helicity board frequency in Hz")

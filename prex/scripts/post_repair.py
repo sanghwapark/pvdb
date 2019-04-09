@@ -104,17 +104,20 @@ def update():
 
         run = db.get_run(run_number)
         conditions = {}
-        try:
-            """
-            myget -c[channel name] -t[time] 
-            :if time is not specified, it returns data for last 1min
-            :Use myStats to get the average current where the BCM reads 1-70 uA 
-            excluding periods when the beam is off
-            """
-            import epics_helper
-            for epics_name, cond_name in epics_helper.epics_list.iteritems():
+
+        """
+        myget -c[channel name] -t[time] 
+        :if time is not specified, it returns data for last 1min
+        :Use myStats to get the average current where the BCM reads 1-70 uA 
+        excluding periods when the beam is off
+        """
+        import epics_helper
+        for epics_name, cond_name in epics_helper.epics_list.iteritems():
+            try:
+                start_time_str = datetime.strftime(run.start_time, "%Y-%m-%d %H:%M:%S")
+                end_time_str = datetime.strftime(run.end_time, "%Y-%m-%d %H:%M:%S")
                 if "current" in cond_name:
-                    cmds = ["myStats", "-b", run.start_time, "-e", run.end_time, "-c", epics_name, "-r", "1:70", "-l", epics_name]
+                    cmds = ["myStats", "-b", start_time_str , "-e", end_time_str, "-c", epics_name, "-r", "1:70", "-l", epics_name]
                     cond_out = subprocess.Popen(cmds, stdout=subprocess.PIPE)
 
                     n = 0
@@ -132,7 +135,7 @@ def update():
                         if key == epics_name:
                             conditions[cond_name] = value
                 else:
-                    cmds = ["myget", "-c", epics_name, "-t", run.start_time]
+                    cmds = ["myget", "-c", epics_name, "-t", start_time_str]
                     cond_out = subprocess.Popen(cmds, stdout=subprocess.PIPE)                    
 
                     for line in cond_out.stdout:
@@ -152,10 +155,11 @@ def update():
                         else:
                             conditions[cond_name] = value
 
-            # Get target type condition
-            conditions["target_type"] = epics_helper.get_target_name(conditions["targer_encoder"])
-        except Exception as e:
-            log.warn(Lf("Error in epics request : '{} '{}'", cond_name, e))
+            except Exception as e:
+                log.warn(Lf("Error in epics request : '{}',{}'", cond_name, e))
+
+        # Get target type condition
+        conditions["target_type"] = epics_helper.get_target_name(conditions["target_encoder"])
 
         db.add_conditions(run_number, conditions, True)
 

@@ -28,7 +28,9 @@ epics_list = {
     "IGL1I00OD16_16":ParityConditions.IHWP,
     "psub_pl_pos":ParityConditions.RQWP,
     "HWienAngle":ParityConditions.HWIEN,
-    "VWienAngle":ParityConditions.VWIEN
+    "VWienAngle":ParityConditions.VWIEN,
+    "HELPATTERNd":ParityConditions.HELICITY_PATTERN,
+    "HELFREQ":ParityConditions.HELICITY_FREQUENCY
 }
 
 def get_run_conds():
