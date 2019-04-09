@@ -4,6 +4,7 @@ import argparse
 import socket
 import glob
 import logging
+import subprocess
 from datetime import datetime
 
 # rcdb stuff
@@ -31,13 +32,13 @@ def get_usage():
 def update():
     description = "Script for DB udpate after CODA run end"
     parser = argparse.ArgumentParser(description=description, usage=get_usage())
-    parser.add_argument("--run", type=str, help="Run number")
+    parser.add_argument("--run", type=str, help="Run number", default="")
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
     parser.add_argument("--update", help="Comma separated, modules to update such as coda,epics", default="")
     parser.add_argument("--reason", help="Reason of the udpate: 'start', 'udpate', 'end' or ''", default="")
     parser.add_argument("-c", "--connection", help="connection string (eg, mysql://pvdb@localhost/pvdb)")
     args = parser.parse_args()
-    run = args.run
+    run_number = args.run
 
     # Connection
     if args.connection:
@@ -76,12 +77,12 @@ def update():
     else:
         coda_path = "/cache/halla/parity/raw/"
 
-    for files in glob.glob(coda_path+"*"+run+"*.dat"):
+    for files in glob.glob(coda_path+"*"+run_number+"*.dat"):
         if not "parity18" in files:
             coda_file_name = files
 
     if "coda" in update_parts and coda_file_name is None:
-        print "CODA file is not found", run
+        print "CODA file is not found", run_number
         sys.exit()
 
     # Udpate db (coda)
@@ -92,15 +93,16 @@ def update():
 
     # Update epics
     if "epics" in update_parts:
-        log.debug(Lf("Update epics, run={}", run))
+        log.debug(Lf("Update epics, run={}", run_number))
         if not "ops" in host:
             print "You probably don't have myget available from your machine"
             sys.exit()
         
-        if not db.get_run(run):
-            log.info(Lf("Run '{}' is not found in DB", run))
+        if not db.get_run(run_number):
+            log.info(Lf("Run '{}' is not found in DB", run_number))
             return
 
+        run = db.get_run(run_number)
         conditions = {}
         try:
             """
@@ -111,28 +113,49 @@ def update():
             """
             import epics_helper
             for epics_name, cond_name in epics_helper.epics_list.iteritems():
-                if cond_name == "beam_current":
+                if "current" in cond_name:
                     cmds = ["myStats", "-b", run.start_time, "-e", run.end_time, "-c", epics_name, "-r", "1:70", "-l", epics_name]
+                    cond_out = subprocess.Popen(cmds, stdout=subprocess.PIPE)
+
+                    n = 0
+                    for line in cond_out.stdout:
+                        n += 1
+                        if n == 1:    # skip header
+                            continue
+                        tokens = line.strip().split()
+                        if len(tokens) < 3:
+                            continue
+                        key = tokens[0]
+                        value = tokens[2]
+                        if value == "N/A":
+                            value = 0
+                        if key == epics_name:
+                            conditions[cond_name] = value
                 else:
                     cmds = ["myget", "-c", epics_name, "-t", run.start_time]
-                    
-                cond_out = subprocess.Popen(cmds, stdout=subprocess.PIPE).stdout.read().strip()
-                if "Invalid" in cond_out:
-                    print "ERROR Invalid epics channel name, check with caget again "
-                    cond_out = "-999"
-                else:
-                    conditions[cond_name] = cond_out
+                    cond_out = subprocess.Popen(cmds, stdout=subprocess.PIPE)                    
+
+                    for line in cond_out.stdout:
+                        value = line.strip().split()[2]
+                        if cond_name == "ihwp":
+                            if value == "1":
+                                conditions[cond_name] = "IN"
+                            else
+                                conditions[cond_name] = "OUT"
+                        else:
+                            conditions[cond_name] = value
+
             # Get target type condition
             conditions["target_type"] = epics_helper.get_target_name(conditions["targer_encoder"])
         except Exception as e:
-            log.warn(Lf("Error in epics request : '{}'", e))
+            log.warn(Lf("Error in epics request : '{} '{}'", cond_name, e))
 
-        db.add_conditions(run, conditions, True)
+        db.add_conditions(run_number, conditions, True)
 
     # >oO DEBUG log message
     db.add_log_record("",
                       "End of update. datetime: '{}'"
-                      .format(datetime.now()), run)
+                      .format(datetime.now()), run_number)
 
 if __name__ == "__main__":
     update()
