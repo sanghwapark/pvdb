@@ -132,7 +132,7 @@ def update():
     # >oO DEBUG log message
     db.add_log_record("",
                       "End of update. datetime: '{}'"
-                      .format(datetime.now()), run_number)
+                      .format(datetime.now()), run)
 
 if __name__ == "__main__":
     update()
