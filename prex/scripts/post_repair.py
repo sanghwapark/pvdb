@@ -147,7 +147,6 @@ def update():
                                 conditions[cond_name] = "OUT"
                         else:
                             conditions[cond_name] = value
-                        print cond_name, value
 
             except Exception as e:
                 log.warn(Lf("Error in epics request : '{}',{}'", cond_name, e))
