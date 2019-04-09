@@ -142,6 +142,13 @@ def update():
                                 conditions[cond_name] = "IN"
                             else:
                                 conditions[cond_name] = "OUT"
+                        elif cond_name == "helicity_pattern":
+                            if value == "1":
+                                conditions[cond_name] = "Quartet"
+                            elif value == "2":
+                                conditions[cond_name] = "Octet"
+                            else:
+                                conditions[cond_name] = "-999" # undefined
                         else:
                             conditions[cond_name] = value
 
