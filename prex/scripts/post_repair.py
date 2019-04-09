@@ -91,7 +91,7 @@ def update():
         run_start.update_parity_coda_conditions(update_context, coda_parse_result)
 
     # Update epics
-    if "epics" in udpate_parts:
+    if "epics" in update_parts:
         log.debug(Lf("Update epics, run={}", run))
         if not "ops" in host:
             print "You probably don't have myget available from your machine"
