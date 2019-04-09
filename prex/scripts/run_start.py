@@ -217,7 +217,7 @@ def update_parity_coda_conditions(context, parse_result):
 
     # Run length
     if parse_result.has_run_end == True and parse_result.has_run_start == True:
-        total_run_time = datetime.strptime(parse_result.end_time, "%m/%d/%y %H:%M:%S") - datetime.strptime(parse_result.start_time, "%m/%d/%y %H:%M:%S")
+        total_run_time = datetime.strptime(parse_result.end_time, "%Y-%m-%d %H:%M:%S") - datetime.strptime(parse_result.start_time, "%Y-%m-%d %H:%M:%S")
         conditions.append((DefaultConditions.RUN_LENGTH, total_run_time.seconds))
         #start and end time is read from run table, so no need to add these conditions here
 #        conditions.append((DefaultConditions.RUN_START_TIME, datetime.strptime(parse_result.start_time,"%m/%d/%y %H:%M:%S")))

@@ -140,7 +140,7 @@ def update():
                         if cond_name == "ihwp":
                             if value == "1":
                                 conditions[cond_name] = "IN"
-                            else
+                            else:
                                 conditions[cond_name] = "OUT"
                         else:
                             conditions[cond_name] = value
