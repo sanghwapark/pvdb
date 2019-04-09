@@ -49,7 +49,7 @@ def parse_start_run_data(config_file, session_file):
     result = ParityCodaRunLogParseResult()
 
     try:
-        temp_start_time = script_start_time.strftime("%y-%m-%d %H:%M:%S")
+        temp_start_time = script_start_time.strftime("%Y-%m-%d %H:%M:%S")
         result.start_time = temp_start_time
         result.has_run_start = True
     except Exception as ex:
@@ -167,7 +167,7 @@ def parse_coda_data_file(coda_file):
         elif tag == "18":
             xml_start_time = int(xml_result.text.split(None)[0])
             try:
-                parse_result.start_time = datetime.utcfromtimestamp(xml_start_time).strftime("%y-%m-%d %H:%M:%S")
+                parse_result.start_time = datetime.utcfromtimestamp(xml_start_time).strftime("%Y-%m-%d %H:%M:%S")
                 parse_result.has_run_start = True
             except Exception as ex:
                 log.warning("Unable to parse start time. Error: " + str(ex))
@@ -175,7 +175,7 @@ def parse_coda_data_file(coda_file):
             xml_end_time = int(xml_result.text.split(None)[0])
             xml_event_count = int(xml_result.text.split(None)[2])
             try:
-                parse_result.end_time = datetime.utcfromtimestamp(xml_end_time).strftime("%y-%m-%d %H:%M:%S")
+                parse_result.end_time = datetime.utcfromtimestamp(xml_end_time).strftime("%Y-%m-%d %H:%M:%S")
                 parse_result.event_count = xml_event_count
                 parse_result.has_run_end = True
             except Exception as ex:
