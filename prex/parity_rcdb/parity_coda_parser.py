@@ -1,7 +1,9 @@
+import os
 import logging
 import xml.etree.ElementTree as Et
 from subprocess import check_output
 from datetime import datetime
+
 from rcdb.log_format import BraceMessage as Lf
 
 log = logging.getLogger("pvdb.parity_coda_parser")
@@ -167,7 +169,7 @@ def parse_coda_data_file(coda_file):
         elif tag == "18":
             xml_start_time = int(xml_result.text.split(None)[0])
             try:
-                parse_result.start_time = datetime.utcfromtimestamp(xml_start_time).strftime("%Y-%m-%d %H:%M:%S")
+                parse_result.start_time = datetime.fromtimestamp(xml_start_time).strftime("%Y-%m-%d %H:%M:%S")
                 parse_result.has_run_start = True
             except Exception as ex:
                 log.warning("Unable to parse start time. Error: " + str(ex))
@@ -175,13 +177,23 @@ def parse_coda_data_file(coda_file):
             xml_end_time = int(xml_result.text.split(None)[0])
             xml_event_count = int(xml_result.text.split(None)[2])
             try:
-                parse_result.end_time = datetime.utcfromtimestamp(xml_end_time).strftime("%Y-%m-%d %H:%M:%S")
+                parse_result.end_time = datetime.fromtimestamp(xml_end_time).strftime("%Y-%m-%d %H:%M:%S")
                 parse_result.event_count = xml_event_count
                 parse_result.has_run_end = True
             except Exception as ex:
                 log.warning("Unable to parse end time. Error: " + str(ex))
         else:
             continue
+
+    # Most likely the run was not end properly
+    if parse_result.has_run_end is False:
+        try:
+            # use last modified time instead
+            mtime = os.path.getmtime(coda_file)
+            parse_result.end_time = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M:%S")
+            parse_result.has_run_end = False
+        except Exception as ex:
+            log.warning("Unable to get last modified time for the coda file: " + str(ex))
 
     # CHECK IF WE WOULD END UP WITH MULTIPLE DATA FILES FOR A RUN
     parse_result.coda_last_file = coda_file
