@@ -1,0 +1,260 @@
+Run #	Config	Date/Time	RunType	Beam Mode	Beam Current	Beam Energy	Target	Log entries (HALOG, HAPLOG)	Run analyzed?	Comment	Raster X/Y	Helicity	IHWP setting	SAM 1 HV	SAM 2 HV	SAM 3 HV	SAM 4 HV	SAM 5 HV	SAM 6 HV	SAM 7 HV	SAM 8 HV
+1117	CntHouse		Pedestal							Twiddle 4a X+											
+1118	CntHouse		Pedestal							Twiddle 4a Y+											
+1119	CntHouse		Pedestal							Twiddle 4a X-											
+1120	CntHouse		Pedestal							Twiddle 4a Y-											
+1121	CntHouse		Pedestal							Twiddle 4e X+											
+1122	CntHouse		Pedestal							Twiddle 4e Y+											
+1123	CntHouse		Pedestal							Twiddle 4e X-											
+1124	CntHouse		Pedestal							Twiddle 4e Y-											
+1125	CntHouse		Pedestal							Background run											
+1214	CntHouse		Calibration							Unser Calibration, No scandata available											
+1219	ALL_PREX		Pedestal							BPM zero Forced Gain											
+1220	CntHouse		Junk																		
+1224	ALL_PREX		Beam On		5 uA		Tungsten Wire			Target Horizontal Scan 											
+1225	ALL_PREX		Beam On		5 uA		Tungsten Wire			Target Horizontal Scan 											
+1226	ALL_PREX		Beam On		5 uA		Tungsten Wire			Target Horizontal Scan											
+1227	ALL_PREX		Beam On		5 uA		Tungsten Wire			Target Horizontal Scan 											
+1228	ALL_PREX		Beam on		5 uA		Tungsten Wire			Target Vertical Scan											
+1229	ALL_PREX																				
+1230	ALL_PREX		Beam On		5 uA																
+1231	ALL_PREX		Beam On		5 uA																
+1232	ALL_PREX																				
+1233	ALL_PREX																				
+1234	ALL_PREX									Replaced VQWK1 ADC, still missing 8 XM signal											
+1235	ALL_PREX																				
+1236	ALL_PREX																				
+1237	ALL_PREX		Beam On		20 uA 	2.2 GeV	Carbon 0.52% RL							OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1238	ALL_PREX		Beam On		20 uA	2.2 GeV	Carbon 0.52% RL							OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1239	ALL_PREX		Beam On		20 uA	2.2 GeV	Carbon 0.52% RL			New run after reboot ROC				OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1240	ALL_PREX		Beam On		20 uA	2.2 GeV	Carbon 0.52% RL							OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1241	ALL_PREX		Beam On		20 uA	2.2 GeV	Carbon 0.52% RL														
+1242	ALL_PREX		Beam On		20 uA	2.2 GeV	Carbon 0.52% RL														
+1243	ALL_PREX		junk							Keep waiting for EB1, killed this run											
+1244	ALL_PREX		pedestal							A short DAQ test											
+1245	ALL_PREX		pedestal							Forced Gain zero											
+1246	ALL_PREX		pedestal							Auto Gain Back, this run to see difference											
+1247	ALL_PREX		test							Testing CODA											
+1248	ALL_PREX		test							Testing CODA											
+1249	ALL_PREX		beam on		15 uA	2.2 GeV	Tungsten 2.8% RL			Testing CODA				OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1250	ALL_PREX		beam on		15 uA	2.2 GeV	Tungsten 2.8% RL			SAM HV on	1.5 mm/ 5 mm			700	75	700	500	700	75	700	500
+1251	ALL_PREX		beam on		15 uA	2.2 GeV	Tungsten 2.8% RL			SAM saturation, scale HV down by a factor 2	1.5 mm/ 5 mm			350	75	350	250	350	75	350	250
+1252	ALL_PREX		beam on		15 uA	2.2 GeV	Tungsten 2.8% RL			Increase high gain tube HV by 100 V	1.5 mm/ 5 mm			450	75	450	350	450	75	450	350
+										SAM 4 and 8 saturate, decrease 100 V	1.5 mm/ 5 mm			550	75	550	250	550	75	550	250
+1253	ALL_PREX		Test		20 uA	2.2 GeV	Tungsten 2.8% RL				1.5 mm/ 5 mm			550	75	550	250	550	75	550	250
+1254	ALL_PREX		beam on		20 uA	2.2 GeV	Tungsten 2.8% RL			SAM 7 at limit, down by 100 V	1.5 mm/ 5 mm			OFF	75	550	250	550	75	450	250
+1255	ALL_PREX		beam on		20 uA	2.2 GeV	Tungsten 2.8% RL				1.5 mm/ 5 mm			OFF	75	650	250	550	75	450	250
+1256	ALL_PREX	2/16	test		30 uA	2.2 GeV	Tungsten 2.8% RL			DAQ warming up, A short run. DAQ ending failed											
+1257	ALL_PREX	2/16	test							Another short test, DAQ is working now											
+1258	ALL_PREX	2/16	test	CW	30 uA					Test											
+1259	ALL_PREX	2/16	test	CW	30 uA	2.2 GeV	Tungsten 2.8% RL														
+1260	ALL_PREX	2/16	test		8 uA	2.2 GeV	Tungsten 2.8% RL			Raster back on after this run	OFF										
+1261	ALL_PREX	2/16	beam on	Tuning	1 uA	2.2 GeV	Tungsten 2.8% RL			Target Scan, as a position calibration. SAMs On	on			OFF	75	650	250	550	75	450	250
+1262	ALL_PREX	2/16	beam on	Tuning	1 uA		Tungsten 2.8% RL			Tunning beam, signal is relatively small	on			OFF	75	650	250	550	75	450	250
+1263	ALL_PREX	2/16	beam on	Tuning	1 uA		Tungsten 2.8% RL				on			OFF	75	650	250	550	75	450	250
+1264	ALL_PREX	2/16	beam on	Tuning	1 uA	2.2 GeV	Tungsten 2.8% RL		Y	Target Scan	OFF			OFF	75	650	250	550	75	450	250
+1265	ALL_PREX	2/16	beam on	Tuning	1 uA	2.2 GeV	Tungsten 2.8% RL		Y	Fix beam position, raster horizontal size changes slowly	ON			OFF	75	650	250	550	75	450	250
+1266	ALL_PREX	2/16	beam on	CW	15 uA	2.2 GeV	Tungsten 2.8% RL		Y	Ready to Production	1.5 mm / 5 mm			OFF	75	650	250	550	75	450	250
+1267	ALL_PREX	2/16	beam on	CW	30 uA	2.2 GeV	Tungsten 2.8% RL		Y	DAQ warming up	1.5 mm / 5mm			OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1268	ALL_PREX	2/16	junk	Tuning	5 uA	2.2 GeV	Tungsten 2.8% RL			Wrong beam setup	OFF			OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+										Called MCC to beam off and change Target to home position				OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1269	ALL_PREX	2/16	calibration	CW	5 uA	2.2 GeV	Home	HALOG: 3654604, 3654608, 3654616	Y	A(-0.1581, 2.454), B(0.6236,2.418)	OFF			OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1270	ALL_PREX	2/16	calibration	CW	5 uA	2.2 GeV	Home	HALOG: 3654620, 3654622	Y	A(1.531 , 3.873), B(1.625,3.782)	OFF			OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1271	ALL_PREX	2/16	calibration	CW	5 uA	2.2 GeV	Home	HALOG: 3654626, 3654627	Y	A(-1.892,3.832), B(-1.448, 3.601)	OFF			OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1272	ALL_PREX	2/16	calibration	CW	5 uA	2.2 GeV	Home	HALOG: 3654635, 3654637	Y	A(-1.802, 1.363), B(-1.414,1.117)	OFF			OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1273	ALL_PREX	2/16	junk	CW	5 uA	2.2 GeV	Home		Y	RF is having trouble 	OFF			OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1274	ALL_PREX	2/16	calibration	CW	5 uA	2.2 GeV	Home	HALOG: 3654648, 3654650	Y	A(1.624,1.277) , B(1.533, 1.286)	OFF			OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1275	ALL_PREX	2/16	calibration	CW	5 uA	2.2 GeV	Home	HALOG: 3654657,3654658	Y	A(-0.1376,2.495), B(0.6588,2.387)	OFF			OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1276	ALL_PREX	2/16	beam on	CW	5 uA	2.2 GeV	Home		Y		OFF			OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1277	ALL_PREX	2/16	pedestal				Master		Y	Force Gain Zero	OFF			OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1278	ALL_PREX	2/20	junk	no beam			None														
+1279	ALL_PREX	2/20	beam on	CW	30 uA	2.2 GeV	Home				2mm / 2mm	30 Hz, Quartet	In	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1280	ALL_PREX	2/20	Calibration	CW	30, 25 , 20 uA	2.2 GeV	Home	HALOG:3656464	Y	BCM Calibration, BPM Forced Gain ~2000	2mm / 2mm	30 Hz, Quartet	In	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1281	ALL_PREX	2/20	pedestal																		
+1282	ALL_PREX	2/20	testing DAQ				Home		Y	Training Run with AJZ, Amali, Tao	OFF	30 Hz, Quartet	In								
+1283	ALL_PREX	2/20	junk	Tune Mode	5 uA	2.2 GeV	Home			Training Run with AJZ, CG - Happex ADC _1_3 has cav4BCMB Charge plugged in as well	OFF	30 Hz, Quartet	In	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1284	ALL_PREX	2/20	junk	Tune Mode	5 uA	2.2 GeV	Home			Cavity BCM B charge replaced with rand DAC12 voltage (Sync test broken) - Happex ADC _1_3 has random DAC 12 plugged in as well (also the QWeak ADC with cav4B charge has random DAC 12 plugged in) - See with evt->Draw("adc18_cav4bq:cav4bq")	OFF	30 Hz, Quartet	In	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1285	ALL_PREX	2/20	junk	Tune Mode	5 uA	2.2 GeV	Home			3, 5 has cavity B charged plugged in - Happex ADC _1_3 has cav4BCMB Charge plugged in as well	OFF	30 Hz, Quartet	In	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1286	ALL_PREX	2/22	SAM Calibration	Beam On	36uA	2.2GeV	Tungsten(2.8%)				1.5mm/5mm	30 Hz, Quartet		OFF	75	650	250	550	75	450	250
+1287	ALL_PREX	2/22	SAM Calibration	Beam On	36uA	2.2 GeV	Tungsten(2.8%)				1.5mm/5mm	30 Hz, Quartet		OFF	85	600	280	500	85	500	230
+1329	ALL_PREX	2/25	current calibration 	Beam on	35,40,45	2.2GeV				SAM HV changed				OFF	100	610	285	510	100	550	235
+										SAM HV changed				OFF	100	625	295	550	100	555	235
+										SAM HV changed				OFF	100	625	290	535	100	560	235
+										SAM HV changed				OFF	75	625	290	510	75	560	235
+1288	ALL_PREX	2/22	SAM Calibration	Beam On	36uA	2.2 GeV	Tungsten(2.8%)		Y		1.5mm/5mm	30 Hz, Quartet		OFF	75	620	285	490	75	555	237
+		2/22	SAM calibration 	Beam On	36 uA	2.2GeV	Tungsten(2.8%)			SAM HV changed				OFF	75	623	287	495	75	560	237
+1289	ALL_PREX	2/22	SAM calibration	Beam On	36uA	2.2GeV	Tungsten(2.8%)		Y		1.5mm/5mm	30 Hz, Quartet		OFF	75	623	287	495	75	560	237
+1291	ALL_PREX	2/22	SAM calibration	Beam On	40uA	2.2GeV	Tungsten(2.8%)		Y		1.5mm/5mm	30 Hz, Quartet		OFF	75	623	287	495	75	560	237
+1292	ALL_PREX	2/22	SAM calibration	Beam On	40uA	2.2GeV	Tungsten(2.8%)		Y		1.5mm/5mm	30 Hz, Quartet		OFF	75	620	285	495	75	545	235
+1294	ALL_PREX	2/22	SAM calibration	Beam On	40uA	2.2GeV	Tungsten(2.8%)		Y		1.5mm/5mm	30 Hz, Quartet		OFF	75	617	283	496	75	542	233
+1295	ALL_PREX	2/22	SAM calibration	Beam On	40uA	2.2GeV	Tungsten(2.8%)		Y		1.5mm/5mm	30 Hz, Quartet		OFF	75	617	283	497	75	538	233
+1296	ALL_PREX	2/22	SAM calibration	Beam On	40uA	2.2GeV	Tungsten(2.8%)	https://ace.phys.virginia.edu:80/HAPPEX/3624  https://ace.phys.virginia.edu:80/HAPPEX/3640	Y		1.5mm/5mm	30 Hz, Quartet		OFF	75	617	283	497	75	535	233
+1297	ALL_PREX	2/22	Beam On	CW	40uA	2.2GeV	Tungsten_2.8%RL		Y	SAM HV off	1.5mm/5mm	30 Hz,Quartet	In	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1301	ALL_PREX	2/22	Beam On	CW	40uA	2.2 GeV	Tungsten_2.8%RL		Y	SAM HV off	1.5mm/5mm	30 Hz,Quartet	In	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1302	ALL_PREX	2/23	Beam On	CW	40uA	2.2 GeV	Tungsten(2.8%)		Y	SAM HV off	1.5mm/5mm	30 Hz,Quartet	In	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1303	ALL_PREX	2/23	junk							rcgui: waiting for eb1 - would not start											
+1304	ALL_PREX	2/23	junk							rcgui: waiting for eb1 - would not start, restarted it											
+1305	ALL_PREX	2/23	Beam On	CW	40uA	2.2 GeV	Tungsten(2.8%)		Y	SAM HV off	1.5mm/5mm	30 Hz,Quartet	In	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1306	ALL_PREX	2/23	Beam On	CW	40uA	2.2 GeV	Tungsten(2.8%)		Y	SAM HV off- stopped the run to turn on the SAMs	1.5mm/5mm	30 Hz,Quartet	In	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1307	ALL_PREX	2/23	Beam On	CW	40uA	2.2 GeV	Tungsten(2.8%)		Y		1.5mm/5mm	30 Hz,Quartet	In	551	77	618	284	498	75	536	233
+1308	ALL_PREX	2/23	Beam On	CW	<0.5uA	2.2 GeV	Tungsten(2.8%)				1.5mm/5mm	30 Hz,Quartet	In	551	77	618	284	498	75	536	233
+1309	ALL_PREX	2/23	Beam On	CW	0.1uA	2.2 GeV	Bogdan Wire		Y	Low beam current.	2mm/2mm	30 Hz,Quartet	In	551	77	618	284	498	75	536	233
+1310	ALL_PREX	2/23	Beam On	CW	40uA	2.2 GeV	Tungsten(2.8%)		Y		1.5mm/5mm	30 Hz,Quartet	In	551	77	618	284	498	75	536	233
+1311	ALL_PREX	2/24	junk	CW	50 uA	2.2 GeV	Tungsten(2.8%)		Y	Test Run	1.5mm/5mm	30 Hz,Quartet	In	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1312	ALL_PREX	2/24	Test	CW	50 uA	2.2 GeV	Tungsten(2.8%)		Y	Test Run	1.5mm/5mm	30 Hz,Quartet	In	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1313	ALL_PREX	2/24	Test	CW	50 uA	2.2 GeV	Tungsten(2.8%)		Y	Tuning SAM HV	1.5mm/5mm	30 Hz,Quartet	In	OFF	75	600	270	498	75	500	233
+														OFF	75	580	250	500	75	500	240
+														OFF	75	560	250	500	75	500	240
+1314	ALL_PREX 	2/24	Test	CW	50 uA	2.2 GeV	Tungsten(2.8%)		Y	Tuning SAM HV	1.5mm/5mm	30 Hz,Quartet	In	OFF	75	560	250	500	75	500	240
+														OFF	73	560	260	490	75	510	240
+1315	ALL_PREX 	2/24	Beam On	CW	50 uA	2.2 GeV	Tungsten(2.8%)		Y		1.5mm/5mm	30 Hz,Quartet	In	OFF	73	560	260	490	75	510	240
+1316	ALL_PREX 	2/24	Beam On	CW	50 uA	2.2 GeV	Tungsten(2.8%)				1.5mm/5mm	30 Hz,Quartet	In	OFF	73	560	260	490	75	510	240
+1317	ALL_PREX 	2/24	Beam On	CW	50 uA	2.2 GeV	Tungsten(2.8%)		y		1.5mm/5mm	30 Hz,Quartet	In	OFF	73	560	260	490	75	510	240
+1318	ALL_PREX 		junk							JUNK											
+1319	ALL_PREX 	2/24	Beam On	CW	50 uA	2.2 GeV	Tungsten(2.8%)	https://ace.phys.virginia.edu:80/HAPPEX/3626	y		1.5mm/5mm	30 Hz,Quartet	In	OFF	73	560	260	490	75	510	240
+1320	ALL_PREX 	2/24	Beam On	CW	50 uA	2.2 GeV	Tungsten(2.8%)		Y		1.5mm/5mm	30 Hz,Quartet	In	OFF	73	560	260	490	75	510	240
+1321	ALL_PREX 	2/24	Beam On	CW	50 uA	2.2 GeV	Tungsten(2.8%)		Y		1.5mm/5mm	30 Hz,Quartet	In	OFF	73	560	260	490	75	510	240
+1322	ALL_PREX 	2/24	junk	CW	1 uA	2.2 GeV	Tungsten(2.8%)			JUNK	1.5mm/5mm	30 Hz,Quartet	In	OFF	73	560	260	490	75	510	240
+1323-1328			junk							trying to get  240 Hz work											
+1329	ALL_PREX 	2/25	current calibration	cw	35,40,45					bpm gains off		30 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1330			junk																		
+1331	ALL_PREX 	2/25	low current calibration	cw	0.1,0.3,0.5,1					bpm gains off		30 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1332	ALL_PREX 	2/25	PITA scan	cw	40					Change from -731 counts, to -931 pita counts		30 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1335	ALL_PREX 	2/25	Beam On	cw	40			https://ace.phys.virginia.edu:80/HAPPEX/3631		helicity magnets set. 30um.		30 Hz,Quartet	out	OFF	73	560	260	490	75	510	240
+1336	ALL_PREX 	2/25	Beam On	cw	40					helicity magnets set 10x smaller.		240 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1337	ALL_PREX 	2/25	Beam On	cw	40					helicity magnets set 10x smaller.3um		240 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1338	ALL_PREX 	2/25	Beam On	cw	40			https://ace.phys.virginia.edu:80/HAPPEX/3631		helicity magnets in Y- 6um Y 4min		240 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1339	ALL_PREX 	2/25	Beam On	cw	40			https://ace.phys.virginia.edu:80/HAPPEX/3631		helicity magnets in X- 8um in X		240 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1340	ALL_PREX 	2/25	Beam On	cw	40	2.2Gev		https://ace.phys.virginia.edu:80/HAPPEX/3631		different Y magnet		240 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1341	ALL_PREX 	2/25	Beam On	cw	40	2.2Gev		https://ace.phys.virginia.edu:80/HAPPEX/3631		different X magnet.		240 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1343	ALL_PREX 	2/25	Beam On	cw	40	2.2Gev				feedback using hall bcm3. Pair synch error,  helicity magnets on at 1000 for x and 1000 for y MHE0L01V,02H. 		240 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1344	ALL_PREX 	2/25	Beam On	cw	40	2.2Gev				feedback using 1I02ws(actually 2I01ws) Works fine		240 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1345	ALL_PREX 	2/25	Beam On	cw	40	2.2Gev				getting ready for the feedback,junk		240 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1346	ALL_PREX 	2/25	Beam On	cw	40	2.2Gev				getting ready for the feedback,junk		240 Hz,Quartet	in	OFF	73	560	260	490	75	510	240
+1347	ALL_PREX 	2/25	Beam On	cw	40	2.2GeV		https://ace.phys.virginia.edu:80/HAPPEX/3631		octet feedback using inj Aq		240 Hz, octet	in	OFF	73	560	260	490	75	510	240
+1348	ALL_PREX	2/25																			
+																					
+1349	ALL_PREX	2/27								Beam was mostly off		30 Hz, Quartet		OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1350	ALL_PREX	2/27										30 Hz, Quartet		OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1351	ALL_PREX	2/27								test run		30 Hz, Quartet		OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1352	ALL_PREX	2/27	Beam On	cw	50	2.2 GeV	Tungsten(2.8%)		Y		1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1353	ALL_PREX	2/27	Beam On	cw	50	2.2GeV	Tungsten(2.8%)		Y	Current dropped to 30 uA towards end of run	1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1354	ALL_PREX	2/27	Beam On	cw	30	2.2GeV	Tungsten(2.8%)		Y	Current went upto 40 uA towards end of run	1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1355	ALL_PREX	2/27	Beam On	cw	40	2.2GeV	Tungsten(2.8%)		Y	Current dropped to 35 uA towards end of run; coda needed to be restarted in the middle of the run after 20 min	1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1356	ALL_PREX	2/27	Beam On	cw	30	2.2GeV	Tungsten(2.8%)		Y		1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1357	ALL_PREX	2/27	Beam On	cw	30	2.2GeV	Tungsten(2.8%)		Y		1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1358	ALL_PREX	2/28	Test	off						Taken to test the online analysis.											
+1359 - 1363	ALL_PREX	2/28	junk						N	TMapFile tests											
+1364	ALL_PREX	2/28	junk						N	/240Hz equivalent/spb=496 at 30Hz											
+1365	ALL_PREX	2/28	junk						N	- 10sec run											
+1366	ALL_PREX	3/1	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)		Y	Test run for analyzer	1.5mmx5mm 	30 Hz,Quartet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1367	ALL_PREX	3/1	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)		Y	Test run for analyzer	1.5mmx5mm 	30 Hz, Quartet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1368	ALL_PREX	3/1	Beam On	cw	30	2.2GeV	Tungsten(2.8%)		Y	Current went upto 50 uA towards end of run	1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1369	ALL_PREX	3/1	Beam On	cw	50	2.2GeV	Tungsten(2.8%)		Y		1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1370	ALL_PREX	3/1	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Test for beam modulation	1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1371	ALL_PREX	3/1	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Test for beam modulation	1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1372	ALL_PREX	3/1	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Test for beam modulation	1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1373	ALL_PREX	3/1	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Test for beam modulation	1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1374	ALL_PREX	3/1	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Test for beam modulation	1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1375	ALL_PREX	3/1	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Test for beam modulation	1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1376	ALL_PREX	3/1	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Current went to 50 uA at end of run	1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1377	ALL_PREX	3/1	Beam On	cw	50	2.2 GeV	Tungsten (2.8%)				1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1378	ALL_PREX	3/1	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			RTP Cell Failure 	1.5mmx5mm 	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1379	ALL_PREX	3/1	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)				1.5mmx5mm	30 Hz, Quartet	out	OFF	73	560	260	490	75	510	240
+1380-1385	ALL_PREX	3/2  12:37 - 3/2 20:34	junk							online panguin dev											
+1386		3/2	Beam On	Cw	30	2.2 GeV	Tungsten (2.8%)		Y		1.5mm*5mm	30Hz, Quartet		OFF	73	560	260	490	75	510	240
+1387		3/3	Beam On	Cw	30	2.2 GeV	Tungsten (2.8%)	https://ace.phys.virginia.edu:80/HAPPEX/3646	Y		1.5mm*5mm	30Hz, Quartet		OFF	73	560	260	490	75	500	250
+1388		3/3	Beam On	Cw	30	2.2 GeV	Tungsten (2.8%)	https://ace.phys.virginia.edu:80/HAPPEX/3647	Y		1.5mm*5mm	30Hz, Quartet		OFF	73	560	260	490	75	500	260
+																					
+1390	ALL_PREX	3/3/19	Junk/Test							Check to see if starts properly	1.5mm * 5mm	30Hz, Quartet	out	OFF	73	560	260	490	75	500	260
+1391	ALL_PREX	3/3/19	Beam On	Cw	30	2.2 GeV	Tungsten (2.8%)		Y		1.5mm * 5mm	30Hz, Quartet	out	OFF	73	560	260	490	75	500	260
+1392	ALL_PREX	3/3/19	junk/240Hz equivalent																		
+1393	ALL_PREX	3/3/19	junk/240Hz equivalent																		
+																					
+1395	ALL_PREX	3/4/2019	junk	cw		2.2 GeV	Tungsten (2.8%)			check feedback		30Hz,Quartet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1396	ALL_PREX		junk	cw		2.2 GeV	Tungsten (2.8%)			test		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1397	ALL_PREX		junk	cw		2.2 GeV	Tungsten (2.8%)			test		240,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1398	ALL_PREX		junk	cw		2.2 GeV	Tungsten (2.8%)			test		240,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1399	ALL_PREX		junk	cw		2.2 GeV	Tungsten (2.8%)			test		240,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1400	ALL_PREX	3/4/2019	junk	cw		2.2 GeV	Tungsten (2.8%)			test		30Hz,quad	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1401	ALL_PREX		junk	cw		2.2 GeV	Tungsten (2.8%)			test		30Hz,quad	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1402	ALL_PREX		junk	cw		2.2 GeV	Tungsten (2.8%)			test		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1403	ALL_PREX		junk	cw		2.2 GeV	Tungsten (2.8%)			test		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1404	ALL_PREX		Calibration	cw	25,30,35	2.2 GeV	Tungsten (2.8%)			current calib, 25,30,35		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1405	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Aq feedback to minimize hallA Aq,120 phase advance/linac cell		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1406	ALL_PREX	3/4/2019	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Aq feedback on, 119 phase advance/linac cell		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1407	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			RTP voltages way off		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1408	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Aq feedback on, 119 phase advance/linac cell		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1409	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Aq feedback on, 120.5 phase advance/linac cell		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1410	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Aq feedback on, 121 phase advance/linac cell		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1411	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Aq feedback on, 121.5 phase advance/linac cell		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1412	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			same		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1413	ALL_PREX	3/4/2019	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Aq feedback on, 121.2 phase advance/linac cell		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1414	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Aq feedback on, 120.7 phase advance/linac cell		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1415	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Aq feedback on, 120.85 phase advance/linac cell		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1416	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			same		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1417	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			same		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1418	ALL_PREX	3/4/2019	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			Aq feedback on, 120.775 phase advance/linac cell		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1419	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			same		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1420	ALL_PREX		Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			same		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1421	ALL_PREX	3/4/2019	Beam On	cw	30	2.2 GeV	Tungsten (2.8%)			This run never happened?? - Cameron		240Hz,octet	out	OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1421	ALL_PREX	3/4/2019	Beam On	cw	30	2.2GeV	Tungsten (2.8%)			CODA Failed 		30 Hz, Quartet 		OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1422	ALL_PREX	3/4/2019	Beam On	cw	30	2.2GeV	Tungsten (2.8%)		yes	Cameron Removed Cav BCM B Current from Happex ADC, updates CH_beamline.map, updated g0inj.flags, happex ADCs still need work		30 Hz, Quartet		OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1423	ALL_PREX	3/5	Beam On	cw	30	2.2GeV	Tungsten (2.8%)		yes	lumis on		30 Hz, Quartet		OFF	73	560	260	490	75	510	240
+1424	ALL_PREX	3/5	Beam Off	off						extended beam off run, lumis on		30 Hz, Quartet		OFF	73	560	260	490	75	510	240
+1425	ALL_PREX	3/5	Beam Off	off								30 Hz, Quartet		OFF	73	560	260	490	75	510	240
+1426-1430	ALL_PREX	3/5	Beam Off	off				https://logbooks.jlab.org/entry/3663525		BMOD client tests without beam		30 Hz, Quartet		OFF	73	560	260	490	75	510	240
+1431-1436	ALL_PREX	3/5	Beam Off	off						Test runs for ET start-bridge		30 Hz, Quartet		OFF	73	560	260	490	75	510	240
+1437	ALL_PREX	3/5	Beam Off	off				https://logbooks.jlab.org/entry/3663543		Fixed ET start-bridge 20 second sleep problem		30 Hz, Quartet		OFF	73	560	260	490	75	510	240
+1438	ALL_PREX	3/6	Beam Off	off					yes	Swapped board 29 for 6, 1 for 29, surveyed 1 (bad channel 02 now replaced) - referrence for Cavity BCMs pre-3/6/2019 firmware upgrade		30 Hz, Quartet		OFF	OFF	OFF	OFF	OFF	OFF	OFF	OFF
+1439	ALL_PREX	3/6	Beam Off	off					yes	Turned on SAM HVs - works		30 Hz, Quartet		OFF	73	560	260	490	75	500	260
+1440	ALL_PREX	3/7	Test  	off						No beam 											
+1441	ALL_PREX	3/8	Test  	cw	20 uA	2.2 GeV	Optics 1			SAM 1 on for a bit then turned off	2 mm x 2mm	30 Hz, Quartet		OFF	73	560	260	490	75	500	260
+1442	ALL_PREX	3/8	Beam On	cw	20 uA	2.2 Gev	Optics 1				2 mm x 2mm 	30 Hz, Quartet		OFF	73	560	260	490	75	500	260
+1444	ALL_PREX	3/11	Beam On	cw	40uA	2.138 GeV	Tungsten (2.8%)			After John change the cavity BW to 100 kHz	1.5mmx5mm	30 Hz, Quartet		OFF							
+1445	ALL_PREX	3/11	Beam  On 	cw	40uA 	2.138 GeV	Tungsten (2.8%)														
+1456	ALL_PREX	3/11	junk, beam off																		
+1447	ALL_PREX	3/11	Beam On 	cw	40uA	2.138 GeV	Tungsten (2.8%)					30 Hz, Quartet		ON	73	100	100	100	75	100	100
+1448	ALL_PREX	3/12	SAM calibration	cw	41uA	2.138 GeV	Tungsten (2.8%)			Variying SAM HVs, Every HV setting was left for 6-7min	1.5mmX5mm	30Hz,Quartet		100	73	100	100	100	75	100	100
+														100	73	150	120	150	75	150	120
+														100	73	200	140	200	75	200	140
+														100	73	250	160	250	75	250	160
+														100	73	300	180	300	75	300	180
+														100	73	350	200	350	75	350	200
+														100	73	400	220	400	75	400	220
+														100	73	450	240	450	75	450	240
+														100	73	500	260	500	75	500	260
+1449	ALL_PREX	3/12	SAM calibration	cw	41uA	2.138 GeV	Tungsten (2.8%)			Variying SAM HVs, Every HV setting was left for 6-7min	1.5mmX5mm	60Hz,Quartet		100	73	100	100	100	75	100	100
+														150	73	150	120	150	75	150	120
+														200	73	200	140	200	75	200	140
+														250	73	250	160	250	75	250	160
+														300	73	300	180	300	75	300	180
+														350	73	350	200	350	75	350	200
+														400	73	400	220	400	75	400	220
+														450	73	450	240	450	75	450	240
+														500	73	500	260	500	75	500	260
+1450	ALL_PREX	3/12	SAM calibration	cw	41uA	2.138 GeV	Tungsten (2.8%)			Variying SAM HVs, Every HV setting was left for 6-7min	1.5mmX5mm	60Hz,Quartet		OFF	73	450	210	400	75	420	210
+														OFF	73	475	220	420	75	440	220
+														OFF	73	500	230	440	75	460	230
+														OFF	73	525	240	460	75	480	240
+														OFF	73	550	250	480	75	500	250
+1451	ALL_PREX	3/12	SAM calibration	cw	41uA	2.138 GeV	Tungsten (2.8%)			Variying SAM HVs, Every HV setting was left for 6-7min	1.5mmX5mm	30Hz,Quartet		OFF	73	450	210	400	75	420	210
+														OFF	73	475	220	420	75	440	220
+														OFF	73	500	230	440	75	460	230
+														OFF	73	525	240	460	75	480	240
+1452	ALL_PREX	3/12	SAM calibration	cw	41uA	2.138 GeV	Tungsten (2.8%)			Variying SAM HVs, Every HV setting was left for 6-7min	1.5mmX5mm	30Hz,Quartet		OFF	73	450	210	400	75	420	210
+														OFF	73	475	220	420	75	440	220
+														OFF	73	500	230	440	75	460	230
+														OFF	73	525	240	460	75	480	240
+														OFF	73	550	250	480	75	500	250
+																					
+1453-1455	ALL_PREX	3/15	Beam on	cw	40uA	2.138 GeV	Tungsten (2.8%)			test for online monitoring											
+1456	ALL_PREX	3/15	Beam on	cw	50uA	2.138 GeV	Tungsten (2.8%)			test for online monitoring											
+1457	ALL_PREX	3/16	Beam On	cw	50uA	2.138 GeV	Tungsten (2.8%)				1.5mm/5mm	30Hz,Quartet		OFF	73	550	255	150	75	490	250
+1458	ALL_PREX	3/16	Beam On	cw	50uA	2.138 GeV	Tungsten (2.8%)				1.5mm/5mm	30Hz,Quartet		OFF	73	535	250	150	75	490	250
+1459	ALL_PREX	3/16	Beam On	cw	50uA	2.138 GeV	Tungsten (2.8%)				1.5mm/5mm	30Hz,Quartet		OFF	73	535	250	200	75	480	250
+1460	ALL_PREX	3/16	Beam On	cw	50uA	2.138 GeV	Tungsten (2.8%)				1.5mm/5mm	30Hz,Quartet		OFF	73	535	250	250	75	480	250
+1461	ALL_PREX		Beam On	cw	0.12uA	2.138 GeV	Bogdan Wire		yes	test for low current cavity BPMs BW=100kHz G1=G2=63	off	30Hz,Quartet		OFF							
+1462	ALL_PREX		Beam On	cw	0.12uA	2.138 GeV	Bogdan Wire		yes	test for low current cavity BPMs BW=1Hz, G1=G2=63	off	..		OFF							
+1463	ALL_PREX		Beam On	cw	0.12uA	2.138 GeV	Bogdan Wire		yes	horizatal scan test for low current cavity BPMs BW=1Hz, G1=G2=63	off	..		OFF							
+1464	ALL_PREX									5 uA tuning beam test for beam modulatoin 	on 	30Hz,Quartet 		OFF							
