@@ -58,7 +58,7 @@ def main():
                 # Loop over the range
                 run1=int(values[0].split('-')[0])
                 run2=int(values[0].split('-')[1])
-                for run in range(run1, run2):
+                for run in range(run1, run2+1):
                     print run
                     try:
                         post_update.update(str(run), update_parts, update_context)

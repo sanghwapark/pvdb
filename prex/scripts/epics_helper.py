@@ -3,6 +3,7 @@ import os, sys
 import rcdb
 import subprocess
 import socket
+from datetime import datetime
 
 #pvdb
 from parity_rcdb import ParityConditions
@@ -46,6 +47,69 @@ def get_run_conds():
         conditions[cond_name] = cond_out
 
     conditions["target_type"] = get_target_name(conditions["target_encoder"])
+
+    return conditions
+
+def mya_get_run_conds(run, log):
+    
+    conditions = {}
+
+    start_time_str = datetime.strftime(run.start_time, "%Y-%m-%d %H:%M:%S")
+    for epics_name, cond_name in epics_list.iteritems():
+        end_time_str = datetime.strftime(run.end_time, "%Y-%m-%d %H:%M:%S")
+
+        # skip period when APEXPOS was not available 
+        if cond_name == "target_encoder" and start_time_str < "2019-02-18 08:00:00":
+            continue
+        if "current" in cond_name:
+            try:
+                cmds = ["myStats", "-b", start_time_str , "-e", end_time_str, "-c", epics_name, "-r", "1:80", "-l", epics_name]
+                cond_out = subprocess.Popen(cmds, stdout=subprocess.PIPE)
+                n = 0
+                for line in cond_out.stdout:
+                    n += 1
+                    if n == 1:    # skip header
+                        continue
+                    tokens = line.strip().split()
+                    if len(tokens) < 3:
+                        continue
+                    key = tokens[0]
+                    value = tokens[2]
+                    if value == "N/A":
+                        value = 0
+                    if key == epics_name:
+                        conditions[cond_name] = value
+            except Exception as ex:
+                log.warn(Lf("Error in beam_current request : '{}'", e))
+                conditions["beam_current"] = "-999"
+        else:
+            try:
+                cmds = ["myget", "-c", epics_name, "-t", start_time_str]
+                cond_out = subprocess.Popen(cmds, stdout=subprocess.PIPE)                    
+
+                for line in cond_out.stdout:
+                    value = line.strip().split()[2]
+                    if cond_name == "ihwp":
+                        if value == "1":
+                            conditions[cond_name] = "IN"
+                        else:
+                            conditions[cond_name] = "OUT"
+                    elif cond_name == "helicity_pattern":
+                        if value == "1":
+                            conditions[cond_name] = "Quartet"
+                        elif value == "2":
+                            conditions[cond_name] = "Octet"
+                        else:
+                            conditions[cond_name] = "-999" # undefined
+                    else:
+                        conditions[cond_name] = value
+            except Exception as e:
+                log.warn(Lf("Error in epics request : '{}',{}'", cond_name, e))
+                conditions[cond_name] = "-999"
+
+    # Get target type condition
+    if start_time_str > "2019-02-18 08:00:00":
+        conditions["target_type"] = get_target_name(conditions["target_encoder"])
 
     return conditions
 
@@ -107,12 +171,16 @@ def update_db_conds(db, run, reason):
     :Defined in provider.py, takes care of incorrect ConditionType
     """
 
-    log = logging.getLogger('pvdb.udpate.epics')
+    log = logging.getLogger('pvdb.update.epics')
     log.debug(Lf("Running 'update_rcdb_conds(db={},   run={})'", db, run))
 
     conditions = {}
     
-    conditions.update( get_run_conds() )
+    if reason == "start":
+        conditions.update( get_run_conds() )
+    if reason == "update" or reason == "end":
+        conditions.update( mya_get_run_conds(run, log) )
+
     db.add_conditions(run, conditions, True)
     log.debug("Commited to DB. End of update_db_conds()")
 
