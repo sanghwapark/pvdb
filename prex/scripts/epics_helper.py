@@ -41,7 +41,7 @@ def get_run_conds():
         cmds = ['caget', '-t', epics_name]
         cond_out = subprocess.Popen(cmds, stdout=subprocess.PIPE).stdout.read().strip()
         if "Invalid" in cond_out:
-            print "ERROR Invalid epics channel name, check with caget again "
+            print "ERROR Invalid epics channel, check with caget again:\t", epics_name
             cond_out = "-999"
 
         conditions[cond_name] = cond_out

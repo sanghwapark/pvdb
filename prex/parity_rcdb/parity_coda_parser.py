@@ -33,14 +33,14 @@ def parity_configs(config_id):
     config_name=["Injector", "CH", "ALL_PREX", "BMW_test"]
     return config_name[config_id]
 
-def parse_start_run_data(config_file, session_file):
+def parse_start_run_data(session_file):
     """
-    Parse coda config and session files
+    Parse coda session files
     
     Use current time as temporary start time
 
     Results to be filled from here:
-    start_time, coda_session, run_config, run_type, run_number, coda_config_file, coda_session_file
+    start_time, coda_session, run_config, run_type, run_number, coda_session_file
  
     Return result
     """
@@ -57,12 +57,15 @@ def parse_start_run_data(config_file, session_file):
     except Exception as ex:
         log.warning("Error with temp run start time " + str(ex))
 
-    result.coda_config_file = config_file
+#    result.coda_config_file = config_file
     result.coda_session_file = session_file
 
+    # Disabled configID.xml parser as we get everything we need from session file
+    """
     # parse configID.xml 
     log.debug(Lf("Parsing CODA Config file '{0}'", config_file))
     parse_coda_config_file(result, config_file)
+    """
 
     # parse controlSessions.xml
     log.debug(Lf("Parsing controlSessions file '{0}'", session_file))
@@ -125,8 +128,9 @@ def parse_coda_session_file(parse_result, filename):
 
     # coda config name, check consistency with configID.xml
     config_name = xml_root.find("session").find("config").text
-    if config_name != parse_result.run_config:
-        log.warning(Lf("config name mismatch {},{}", config_name, parser_result.run_config))
+    parse_result.run_config = config_name
+#    if config_name != parse_result.run_config:
+#        log.warning(Lf("config name mismatch {},{}", config_name, parser_result.run_config))
         
     # coda run number
     parse_result.run_number = int(xml_root.find("session").find("runnumber").text)
@@ -200,3 +204,61 @@ def parse_coda_data_file(coda_file):
     parse_result.coda_files_count = 1
 
     return parse_result
+
+def runinfo_parser():
+    
+    # hard-coded path for runstart.info file
+    runinfo_file="/adaqfs/home/apar/scripts/.runstart.info"
+    ddict={}
+
+    """
+    Read runstart.info file and return dictionary
+    input file is created by runstart.tcl
+
+    Input file format:
+
+    [Run]
+    type:Test
+    
+    [beam]
+    current:70
+    energy:1.063
+    polarization:90
+    raster:off
+    
+    [comment]
+    text:test of DAQ
+    
+    [dithering]
+    magnet:off
+    magnets:
+    
+    [leftarm]
+    p:1.063
+    theta:5
+    
+    [parity]
+    feedback:off
+    ihwp:in
+    
+    [rightarm]
+    p:1.063
+    theta:5
+    
+    [target]
+    fanspeed:0 Hz
+    type:No Target, Empty
+    """
+
+    with open(runinfo_file, "rb") as f:
+        output = f.read()
+        d_info = filter(None, [x.strip() for x in output.strip().split("[")])
+        for l in d_info:
+            fd = l.split("]\n",1)[0]
+            ddict[fd] = {}
+            for cont in [x.strip() for x in l.split("]\n",1)[1].split("\n")]:
+                group=cont.split(":",1)[0]
+                var=cont.split(":",1)[1]    
+                ddict[fd][group] = var
+
+    return ddict

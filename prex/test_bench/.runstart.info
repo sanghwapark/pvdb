@@ -1,0 +1,32 @@
+
+[Run]
+type:Test
+
+[beam]
+current:70
+energy:1.063
+polarization:90
+raster:off
+
+[comment]
+text:test of DAQ
+
+[dithering]
+magnet:off
+magnets:
+
+[leftarm]
+p:1.063
+theta:5
+
+[parity]
+feedback:off
+ihwp:in
+
+[rightarm]
+p:1.063
+theta:5
+
+[target]
+fanspeed:0 Hz
+type:No Target, Empty

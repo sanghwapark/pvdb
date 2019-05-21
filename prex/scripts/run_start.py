@@ -19,6 +19,9 @@ from parity_rcdb import parity_coda_parser
 from parity_rcdb import ParityConditions
 from parity_rcdb.parity_coda_parser import ParityCodaRunLogParseResult
 
+# helper script
+import epics_helper
+
 """
 Update script at run start
 
@@ -27,17 +30,20 @@ Things to consider for the future:
 
 """
 
+# Test flag, it will print out parse result but no udpate to DB
+test_mode = True
+
 def get_usage():
     return """
 
     Usage:
     minimal:
-    run_start.py <config_xml_file> <session_xml_file>
+    run_start.py <session_xml_file>
     
-    run_start.py <config_xml_file> <session_xml_file> -c <db_connection_string> --update=coda,epics --reason=[start, update, end]
+    run_start.py <session_xml_file> -c <db_connection_string> --update=coda,epics --reason=[start, update, end]
     
     example:
-    run_start.py configID.xml controlSessions.xml
+    run_start.py controlSessions.xml
     
     <db_connection_string> - is optional. But if it is not set, RCDB_CONNECTION environment variable should be set
 
@@ -52,21 +58,21 @@ def parse_start_run_info():
     log.setLevel(logging.INFO)  # DEBUG: print everything. Changed to logging. INFO for less output
 
     parser = argparse.ArgumentParser(description= "Update PVDB")
-    parser.add_argument("config_xml_file", type=str, help="full path to configID.xml file")
+#    parser.add_argument("config_xml_file", type=str, help="full path to configID.xml file")
     parser.add_argument("session_xml_file", type=str, help="full path to controlSessions.xml file")
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
-    parser.add_argument("--update", help="Comma separated, modules to update such as coda,epics", default="")
-    parser.add_argument("--reason", help="Reason of the udpate: 'start', 'udpate', 'end' or ''", default="")
+    parser.add_argument("--update", help="Comma separated, modules to update such as coda,epics", default="coda")
+    parser.add_argument("--reason", help="Reason of the udpate: 'start', 'udpate', 'end' or ''", default="start")
     parser.add_argument("-c", "--connection", help="connection string (eg, mysql://pvdb@localhost/pvdb)")
     args = parser.parse_args()
 
     # Set log level
     log.setLevel(logging.DEBUG if args.verbose else logging.INFO)
 
-    # coda config xml files
-    config_xml_file = args.config_xml_file
+    # coda xml files
+#    config_xml_file = args.config_xml_file
+#    log.debug(Lf("config_xml_file = '{}'", config_xml_file))
     session_xml_file = args.session_xml_file
-    log.debug(Lf("config_xml_file = '{}'", config_xml_file))
     log.debug(Lf("session_xml_file = '{}' ", session_xml_file))
     
     # Connection
@@ -97,20 +103,34 @@ def parse_start_run_info():
     update_context = rcdb.UpdateContext(db, update_reason)
 
     # Parse coda files and save to DB
-    log.debug(Lf("Parsing coda__xml_files='{}', '{}'",config_xml_file, session_xml_file))
+    log.debug(Lf("Parsing coda__xml_files='{}'", session_xml_file))
 
-    coda_parse_result = parity_coda_parser.parse_start_run_data(config_xml_file, session_xml_file)
+    coda_parse_result = parity_coda_parser.parse_start_run_data(session_xml_file)
     run_number = coda_parse_result.run_number
 
     # >oO DEBUG log message
     now_clock = time.clock()
-    db.add_log_record("", "Start Run Script: Parsed xml_files='{}','{}'. run='{}'"
-                      .format(config_xml_file, session_xml_file, run_number), run_number)
+    db.add_log_record("", "Start Run Script: Parsed xml_files='{}'. run='{}'"
+                      .format(session_xml_file, run_number), run_number)
+
+    # Parse runstart.info (Run type, comment)
+    dict_info = parity_coda_parser.runinfo_parser()
+    if bool(dict_info["Run"]["type"]):
+        coda_parse_result.run_type = dict_info["Run"]["type"]
+    if bool(dict_info["comment"]["text"]):
+        coda_parse_result.user_comment = dict_info["comment"]["text"]
 
     # Coda conditions to DB
     if "coda" in update_parts:
         log.debug(Lf("Adding coda conditions to DB", ))
-        update_parity_coda_conditions(update_context, coda_parse_result)
+        if test_mode:
+            print "Run number:\t", coda_parse_result.run_number
+            print "Start time:\t", coda_parse_result.start_time
+            print "Run config:\t", coda_parse_result.run_config
+            print "Run type:\t", coda_parse_result.run_type
+            print "Comment:\t", coda_parse_result.user_comment
+        else:
+            update_parity_coda_conditions(update_context, coda_parse_result)
     else:
         log.debug(Lf("Skipping to add coda conditions to DB. Use --update=...,coda to update it", ))
 
@@ -123,40 +143,43 @@ def parse_start_run_info():
     # EPICS Update
     # Get EPICS variables
     epics_start_clock = time.clock()
-    if 'epics' in update_parts and run_number:
-        # noinspection PyBroadException
-        try:
-            import epics_helper
-            conditions = epics_helper.update_db_conds(db, run_number, update_reason)
-            epics_end_clock = time.clock()
-            # >oO DEBUG log message
-            if "beam_current" in conditions:
+    if test_mode:
+        conditions = epics_helper.get_run_conds()
+        print conditions
+    else:
+        if 'epics' in update_parts and run_number:
+            # noinspection PyBroadException
+            try:
+                conditions = epics_helper.update_db_conds(db, run_number, update_reason)
+                epics_end_clock = time.clock()
+                # >oO DEBUG log message
+                if "beam_current" in conditions:
+                    db.add_log_record("",
+                                      "Update epics. beam_current:'{}', time: '{}'"
+                                      .format(conditions["beam_current"], datetime.now()), run_number)
+                    
+            except Exception as ex:
+                log.warn("update_epics.py failure. Impossible to run the script. Internal exception is:\n" + str(ex))
+                epics_end_clock = time.clock()
+
+                # >oO DEBUG log message
                 db.add_log_record("",
-                              "Update epics. beam_current:'{}', time: '{}'"
-                              .format(conditions["beam_current"], datetime.now()), run_number)
-                
-        except Exception as ex:
-            log.warn("update_epics.py failure. Impossible to run the script. Internal exception is:\n" + str(ex))
-            epics_end_clock = time.clock()
-
-            # >oO DEBUG log message
-            db.add_log_record("",
-                              "ERROR update epics. Error type: '{}' message: '{}' trace: '{}' "
-                              "||epics_clocks:'{}' clocks:'{}' time: '{}'"
-                              .format(type(ex), ex.message, traceback.format_exc(),
-                                      epics_end_clock - epics_start_clock, epics_end_clock - script_start_clock,
-                                      datetime.now()), run_number)
-
+                                  "ERROR update epics. Error type: '{}' message: '{}' trace: '{}' "
+                                  "||epics_clocks:'{}' clocks:'{}' time: '{}'"
+                                  .format(type(ex), ex.message, traceback.format_exc(),
+                                          epics_end_clock - epics_start_clock, epics_end_clock - script_start_clock,
+                                          datetime.now()), run_number)
+                    
     log.debug("End of update")
 
     # >oO DEBUG log message
     now_clock = time.clock()
-    db.add_log_record("",
-                      "End of update. Script proc clocks='{}', wall time: '{}', datetime: '{}'"
-                      .format(now_clock - script_start_clock,
-                              time.time() - script_start_time,
-                              datetime.now()), run_number)
-
+    if not test_mode:
+        db.add_log_record("",
+                          "End of update. Script proc clocks='{}', wall time: '{}', datetime: '{}'"
+                          .format(now_clock - script_start_clock,
+                                  time.time() - script_start_time,
+                                  datetime.now()), run_number)
 
 def update_parity_coda_conditions(context, parse_result):
 
